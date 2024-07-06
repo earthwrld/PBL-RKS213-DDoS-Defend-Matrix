@@ -1,5 +1,5 @@
 # PBL-RKS213-DDoS-Defend-Matrix
-Pbl Semester 2 ddos defend matrix
+![pptdepan](https://github.com/earthwrld/PBL-RKS213-DDoS-Defend-Matrix/assets/115145962/a59cd4b0-defe-478a-867a-72a0b7be7ea7)
 
 ## Overview
 
@@ -11,5 +11,7 @@ The DDoS Defend Matrix project is designed to develop a robust defense system ag
 - **Mitigation Techniques:** Implements filtering and rate limiting to control and manage traffic during an attack.
 - **Simulation:** Includes DDoS attack simulations to test and refine the system's effectiveness.
 - **Real-time Monitoring:** Provides real-time insights and alerts on network security status.
+
+![Screenshot 2024-07-04 114634](https://github.com/earthwrld/PBL-RKS213-DDoS-Defend-Matrix/assets/115145962/3c601e35-0fef-4905-942d-2898d5d7c6b3)
 
 please read the manual book for more detail about this project
