@@ -1,0 +1,116 @@
+{% extends 'layout.html' %}
+
+{% block title %}About Us - DDOS Defend Matrix - Purple Team{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f0f2f5;
+        color: #333;
+    }
+    .about-us-content {
+        padding: 40px 20px;
+        max-width: 1000px;
+        margin: 40px auto;
+        text-align: center;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    }
+    .about-us-content h1 {
+        margin-bottom: 30px;
+        font-size: 2.5em;
+        color: #333;
+    }
+    .about-us-content h2 {
+        margin-bottom: 10px;
+        font-size: 2em;
+        color: #555;
+    }
+    .about-us-content h3 {
+        margin-top: 0;
+        font-size: 1.5em;
+        color: #333;
+    }
+    .about-us-content p {
+        font-size: 1.1em;
+        line-height: 1.8;
+        text-align: justify;
+        margin-bottom: 20px;
+    }
+    .team-members {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .team-member {
+        flex: 1 1 300px;
+        margin: 15px;
+        background-color: #f9f9f9;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        text-align: center;
+        transition: transform 0.3s;
+    }
+    .team-member:hover {
+        transform: translateY(-5px);
+    }
+    .team-member img {
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+</style>
+
+<div class="about-us-content">
+    <h1>About Us</h1>
+    <h2>Project Manager</h2>
+    <div class="team-member">
+        <img src="{{ url_for('static', filename='pakrifai.png') }}" alt="Mohammad Rifai" style="width:250px;height:auto;">
+        <h3>Mohammad Rifai</h3>
+        <p>Mr. Mohammad Rifai is an experienced network security specialist with a deep understanding of cybersecurity protocols and defense mechanisms. He leads the DDOS Defend Matrix project with a focus on innovation and practical implementation.</p>
+    </div>
+    
+    <h1>Team Members</h1>
+    <div class="team-members">
+        <div class="team-member">
+            <img src="{{ url_for('static', filename='bumi.png') }}" alt="Bumi Arya Dirangga" style="width:250px;height:auto;">
+            <h3>Bumi Arya Dirangga</h3>
+            <p>NIM: 4332301037</p>
+            <p>Role: Project Leader & Networking System Administration</p>
+        </div>
+        <div class="team-member">
+            <img src="{{ url_for('static', filename='rey.png') }}" alt="Rey Sastria Harianja" style="width:250px;height:auto;">
+            <h3>Rey Sastria Harianja</h3>
+            <p>NIM: 4332301038</p>
+            <p>Role: DDoS Attack Developer</p>
+        </div>
+        <div class="team-member">
+            <img src="{{ url_for('static', filename='ecy.png') }}" alt="Baiq Desi Permatasari" style="width:250px;height:auto;">
+            <h3>Baiq Desi Permatasari</h3>
+            <p>NIM: 4332301040</p>
+            <p>Role: Project Coordination</p>
+        </div>
+        <div class="team-member">
+            <img src="{{ url_for('static', filename='hammam.png') }}" alt="Hammam Awiz Zukimi" style="width:250px;height:auto;">
+            <h3>Hammam Awiz Zukimi</h3>
+            <p>NIM: 4332301051</p>
+            <p>Role: Networking Specialist</p>
+        </div>
+        <div class="team-member">
+            <img src="{{ url_for('static', filename='elvira.png') }}" alt="Elvira Chandra" style="width:250px;height:auto;">
+            <h3>Elvira Chandra</h3>
+            <p>NIM: 4332301056</p>
+            <p>Role: Project Coordination</p>
+        </div>
+        <div class="team-member">
+            <img src="{{ url_for('static', filename='steven.png') }}" alt="Steven Juliano" style="width:250px;height:auto;">
+            <h3>Steven Juliano</h3>
+            <p>NIM: 4332301061</p>
+            <p>Role: DDoS Attack Developer</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

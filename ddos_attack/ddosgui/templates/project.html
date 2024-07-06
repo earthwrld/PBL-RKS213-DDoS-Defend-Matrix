@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .header {
+            background-color: #000;
+            color: #fff;
+            padding: 20px 0;
+            text-align: right;
+            position: relative;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .header img {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+        .header nav {
+            display: inline-block;
+            margin-right: 20px;
+        }
+        .header nav a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .header nav a:hover {
+            text-decoration: underline;
+        }
+        .content {
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 40px auto;
+            text-align: center;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .content h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .content p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .content img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+        .content img:hover {
+            transform: scale(1.05);
+        }
+        .workflow-step {
+            margin-bottom: 40px;
+        }
+        .workflow-step h2 {
+            font-size: 2em;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .workflow-step p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            text-align: justify;
+        }
+        .start-button {
+            display: inline-block;
+            background-color: #b00a0a;
+            color: #fff;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .start-button:hover {
+            background-color: #900808;
+        }
+        .footer {
+            padding: 20px 0;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            margin-top: 40px;
+        }
+        .footer a {
+            color: #6794EA;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="{{ url_for('home') }}">
+            <img src="{{ url_for('static', filename='logo_rks1.png') }}" alt="RKS Logo" height="50">
+        </a>
+        <nav>
+            <a href="{{ url_for('about_us') }}">About Us</a>
+            <a href="{{ url_for('description') }}">Description</a>
+            <a href="{{ url_for('project') }}">Project</a>
+        </nav>
+    </div>
+    <div class="content">
+        <h1>Project Page</h1>
+        <p>Welcome to the project page of the DDOS Defend Matrix. Here, you can find details about our efforts to simulate, mitigate, and defend against Distributed Denial of Service (DDoS) attacks through innovative strategies and solutions.</p>
+        
+        <img src="{{ url_for('static', filename='workflow.png') }}" alt="Workflow">
+        
+        <div class="workflow-step">
+            <h2>1. Information Gathering</h2>
+            <img src="{{ url_for('static', filename='information_gathering.png') }}" alt="Information Gathering">
+            <p>In this phase, we collect data about the target system using various techniques such as OSINT (Open Source Intelligence), network scanning, and reconnaissance to identify potential vulnerabilities.</p>
+        </div>
+
+        <div class="workflow-step">
+            <h2>2. Scanning</h2>
+            <img src="{{ url_for('static', filename='scanning.png') }}" alt="Scanning">
+            <p>We use advanced scanning tools to probe the target system for open ports, services, and vulnerabilities. This step helps us understand the attack surface and plan the next steps accordingly.</p>
+        </div>
+
+        <div class="workflow-step">
+            <h2>3. Are there any vulnerabilities?</h2>
+            <img src="{{ url_for('static', filename='vulnerability_assessment.png') }}" alt="Are there any vulnerabilities?">
+            <p>Based on the information gathered and scanning results, we assess whether there are any exploitable vulnerabilities in the target system. This decision point determines the subsequent actions.</p>
+        </div>
+
+        <div class="workflow-step">
+            <h2>4. Exploit</h2>
+            <img src="{{ url_for('static', filename='exploit.png') }}" alt="Exploit">
+            <p>If vulnerabilities are found, we proceed to exploit them in a controlled environment to understand the impact and develop appropriate countermeasures. This step is crucial for testing the resilience of the system.</p>
+        </div>
+
+        <div class="workflow-step">
+            <h2>5. Disclosure</h2>
+            <img src="{{ url_for('static', filename='disclosure.png') }}" alt="Disclosure">
+            <p>After exploiting the vulnerabilities, we document our findings and disclose them to the responsible parties. This ensures that the identified issues can be addressed and remediated promptly.</p>
+        </div>
+
+        <div class="workflow-step">
+            <h2>6. Final Report</h2>
+            <img src="{{ url_for('static', filename='final_report.png') }}" alt="Final Report">
+            <p>We compile a comprehensive report detailing the entire process, findings, exploits, and recommendations for improving the security posture of the target system. This report serves as a valuable resource for future reference.</p>
+        </div>
+        
+        <a href="{{ url_for('ddos_attack') }}" class="start-button">Start</a>
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 DDOS Defend Matrix - Purple Team. All rights reserved. | <a href="{{ url_for('home') }}">Home</a></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DDOS Attack</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: #333;
+        }
+        .header {
+            background-color: #000;
+            color: #fff;
+            padding: 20px 0;
+            text-align: right;
+            position: relative;
+        }
+        .header img {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            cursor: pointer;
+        }
+        .header nav {
+            display: inline-block;
+            margin-right: 20px;
+        }
+        .header nav a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .content {
+            text-align: center;
+            padding: 20px;
+        }
+        .banner {
+            width: 100%;
+            height: 300px;
+            background: url('{{ url_for('static', filename='banner.png') }}') no-repeat center center;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            color: #fff;
+        }
+        .banner h1 {
+            position: relative;
+            top: 100px;
+            font-size: 36px;
+            margin: 0;
+        }
+        .banner p {
+            position: relative;
+            top: 110px;
+            font-size: 18px;
+            margin: 0;
+        }
+        .attack-types button {
+            background-color: #6794EA;
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 15px;
+            border-radius: 5px;
+        }
+        .attack-types button.active {
+            background-color: #A73131;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            font-size: 16px;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: calc(50% - 20px);
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            margin: 0 10px;
+        }
+        .form-group .check-botnets {
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #6794EA;
+            color: white;
+            margin-left: 10px;
+        }
+        .ddos-frame {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            margin: 20px auto;
+            width: 90%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .attack-details {
+            flex: 1;
+            text-align: left;
+            padding-right: 20px;
+        }
+        .botnet-list {
+            flex: 1;
+            text-align: left;
+            padding-left: 20px;
+            border-left: 1px solid #ccc;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .botnet-list h3 {
+            font-size: 20px;
+            margin-top: 0;
+        }
+        .botnet-list ul {
+            list-style: none;
+            padding: 0;
+        }
+        .botnet-list ul li {
+            margin-bottom: 10px;
+        }
+        .actions {
+            margin-top: 20px;
+        }
+        .actions button {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #A73131;
+            color: white;
+        }
+        .result-message {
+            display: none;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #A73131;
+        }
+        .footer {
+        padding: 20px 0;
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        margin-top: 40px;
+        }
+        .footer a {
+        color: #6794EA;
+        text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="{{ url_for('home') }}">
+            <img src="{{ url_for('static', filename='logo_rks1.png') }}" alt="RKS Logo" height="50">
+        </a>
+        <nav>
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('about_us') }}">About Us</a>
+            <a href="{{ url_for('description') }}">Description</a>
+            <a href="{{ url_for('project') }}">Project</a>
+        </nav>
+    </div>
+    <div class="content">
+        <div class="banner">
+            <h1>DDoS Attack</h1>
+            <p>Select the type of DDoS attack and provide the necessary details below to start the attack.</p>
+        </div>
+        <div class="attack-types">
+            <button id="udpflood" class="active" onclick="setActive('udpflood')">UDP Flood</button>
+            <button id="slowloris" onclick="setActive('slowloris')">Slowloris</button>
+        </div>
+        <form id="ddos-form">
+            <div class="ddos-frame">
+                <div class="attack-details">
+                    <div class="form-group">
+                        <label for="target_ip">Target IP/URL</label>
+                        <input type="text" id="target_ip" name="target_ip" placeholder="Enter Target IP/URL" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="num_botnets">Number of Botnets(4)</label>
+                        <input type="number" id="num_botnets" name="num_botnets" placeholder="Enter Number of Botnets" required>
+                        <button type="button" class="check-botnets" onclick="checkBotnets()">Check Botnets</button>
+                    </div>
+                    <input type="hidden" id="attack_type" name="attack_type" value="udpflood">
+                </div>
+                <div class="botnet-list">
+                    <h3>Active Botnets</h3>
+                    <ul id="botnet-list">
+                        <!-- List of active botnets will be populated here -->
+                    </ul>
+                </div>
+            </div>
+            <div class="actions">
+                <button type="button" id="attack-button" onclick="startAttack()">START ATTACK</button>
+            </div>
+        </form>
+        <div class="result-message" id="result-message">
+            Attack is running... Check the console for updates.
+        </div>
+    </div>
+    <script>
+        function setActive(type) {
+            document.getElementById('udpflood').classList.remove('active');
+            document.getElementById('slowloris').classList.remove('active');
+            document.getElementById(type).classList.add('active');
+            document.getElementById('attack_type').value = type;
+        }
+
+        function checkBotnets() {
+            var numBotnets = document.getElementById('num_botnets').value;
+            var botnetList = document.getElementById('botnet-list');
+            botnetList.innerHTML = ''; // Clear current list
+
+            // Fetch the hosts from the backend
+            var hosts = {{ hosts | tojson }};
+            for (var i = 0; i < numBotnets && i < hosts.length; i++) {
+                var host = hosts[i];
+                var li = document.createElement('li');
+                li.textContent = 'IP: ' + host.ip + ' - User: ' + host.username + ' - Status: Active';
+                botnetList.appendChild(li);
+            }
+        }
+
+        function startAttack() {
+            var attackType = document.getElementById('attack_type').value;
+            var targetIp = document.getElementById('target_ip').value;
+            var numBotnets = document.getElementById('num_botnets').value;
+            
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "{{ url_for('ddos_attack') }}", true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send("attack_type=" + attackType + "&target_ip=" + targetIp + "&num_botnets=" + numBotnets);
+
+            // Show result message
+            document.getElementById('result-message').style.display = 'block';
+
+            // Change button to STOP FLOODING
+            var attackButton = document.getElementById('attack-button');
+            attackButton.textContent = 'STOP FLOODING';
+            attackButton.setAttribute('onclick', 'stopAttack()');
+        }
+
+        function stopAttack() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "{{ url_for('stop_attack') }}", true);
+            xhr.send();
+
+            // Hide result message
+            document.getElementById('result-message').style.display = 'none';
+
+            // Change button back to START ATTACK
+            var attackButton = document.getElementById('attack-button');
+            attackButton.textContent = 'START ATTACK';
+            attackButton.setAttribute('onclick', 'startAttack()');
+        }
+
+        function checkAttackStatus() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "{{ url_for('attack_status') }}", true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.attack_in_progress) {
+                        document.getElementById('result-message').style.display = 'block';
+                        var attackButton = document.getElementById('attack-button');
+                        attackButton.textContent = 'STOP FLOODING';
+                        attackButton.setAttribute('onclick', 'stopAttack()');
+                    } else {
+                        document.getElementById('result-message').style.display = 'none';
+                        var attackButton = document.getElementById('attack-button');
+                        attackButton.textContent = 'START ATTACK';
+                        attackButton.setAttribute('onclick', 'startAttack()');
+                    }
+                }
+            };
+            xhr.send();
+        }
+
+        // Initial check of attack status on page load
+        checkAttackStatus();
+    </script>
+    <div class="footer">
+        <p>&copy; 2024 PBL-213 DDOS Defend Matrix - Purple Team. All rights reserved. | <a href="{{ url_for('home') }}">Home</a></p>
+    </div>
+</body>
+</html>

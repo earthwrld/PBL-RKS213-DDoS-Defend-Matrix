@@ -1,0 +1,82 @@
+{% extends 'layout.html' %}
+
+{% block title %}Description - DDOS Defend Matrix - Purple Team{% endblock %}
+
+{% block content %}
+<style>
+    .description-container {
+        margin: 0 auto;
+        max-width: 900px;
+        padding: 30px;
+        border: 1px solid #ddd;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        background-color: #fff;
+    }
+    .description-container h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 2.5em;
+        color: #333;
+    }
+    .description-container img {
+        width: 100%;
+        height: auto;
+        max-width: 600px;
+        margin-bottom: 20px;
+    }
+    .description-container p {
+        font-size: 1.2em;
+        line-height: 1.8;
+        text-align: justify;
+        text-indent: 2em;
+        margin-bottom: 20px;
+    }
+    .description-container ul {
+        list-style-type: disc;
+        padding-left: 40px;
+        margin-top: 10px;
+    }
+    .description-container ul li {
+        margin-bottom: 10px;
+    }
+    .description-container a {
+        color: #6794EA;
+        text-decoration: none;
+    }
+    .description-container a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="description-container">
+    <h1>Description</h1>
+    <div style="text-align: center;">
+        <img src="{{ url_for('static', filename='poster.png') }}" alt="Project Poster">
+    </div>
+    <p>
+        Welcome to the PBL DDoS Defend Matrix project. Distributed Denial of Service (DDoS) attacks are a significant threat to the availability and performance of web services. These attacks aim to disrupt network services by overwhelming the target with a flood of malicious traffic, resulting in degraded performance or complete downtime of the affected website or server.
+    </p>
+    <p>
+        In this project, we focus on recognizing, developing, and implementing defense strategies against DDoS attacks using network simulation on GNS3. The DDoS Defend Matrix employs advanced data structures to monitor and analyze network traffic in real-time, reinforcing systems against such attacks.
+    </p>
+    <p>
+        Our approach involves the use of complex algorithms to detect anomalies in traffic patterns, enabling proactive mitigation measures. By simulating various attack scenarios in GNS3, we can test and refine our defense mechanisms, ensuring robustness and resilience of the network infrastructure.
+    </p>
+    <p>
+        The project includes:
+    </p>
+    <ul>
+        <li>Real-time traffic monitoring and analysis</li>
+        <li>Implementation of automated response systems</li>
+        <li>Development of scalable defense strategies</li>
+        <li>Comprehensive testing using GNS3 network simulations</li>
+    </ul>
+    <p>
+        Join us in exploring the intricacies of network security and the innovative solutions we are developing to combat DDoS attacks. Our goal is to create a more secure and resilient digital landscape, safeguarding vital online services from malicious disruptions.
+    </p>
+    <p>
+        For more information about the project, our team, and how you can contribute, please visit our <a href="{{ url_for('about_us') }}">About Us</a> page.
+    </p>
+</div>
+{% endblock %}
